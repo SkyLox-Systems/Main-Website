@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - SkyLox</title>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/png" href="/content/8332adf9-2cbb-4cdc-a661-dd4b0fa6d3c7.png">
+  
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+    }
+
+    * {
+      margin: 4;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    a {
+      text-decoration: none;
+      color: #1c1e53;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: #5e3bee !important;
+    }
+
+    h5 {
+      font-size: 20px;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    nav {
+      background-color: #fff;
+      position: sticky;
+      top: 0;
+      padding: 0 85px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+      box-shadow: 0 5px 80px rgba(0, 0, 0, 0.1);
+    }
+
+    nav .logo,
+    footer .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    nav .logo a,
+    footer .logo a {
+      margin-left: 8px;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    nav .logo img,
+    footer .logo img {
+      width: 40px;
+      height: 40px;
+    }
+
+    nav ul,
+    footer .top ul {
+      display: flex;
+      gap: 40px;
+    }
+
+    nav button {
+      color: #1c1e53;
+      background-color: transparent;
+      padding: 12px 16px;
+      border-radius: 5px;
+      border: 1px solid #1c1e53;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    nav button:hover {
+      background-color: #5e3bee;
+      border-color: #5e3bee;
+      color: #fff;
+    }
+
+    nav button#menuButton {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      padding: 7px;
+    }
+
+    .signup-container {
+      width: 300px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    footer {
+      background-color: #deebee;
+      padding: 85px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    footer .top,
+    footer .bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    footer .top .social-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 22px;
+    }
+
+    footer .separator {
+      width: 100%;
+      height: 1px;
+      background-color: #282938;
+      margin: 30px 0 20px;
+    }
+
+    footer .bottom p {
+      font-size: 12px;
+    }
+
+    footer .bottom .links a {
+      font-size: 12px;
+      margin-left: 14px;
+    }
+
+    @media screen and (max-width: 1200px) {
+
+      .main .left h5 {
+        font-size: 18px;
+      }
+
+      .main .left h3 {
+        font-size: 36px;
+      }
+
+      .main .left p {
+        font-size: 18px;
+      }
+
+      .main .right img {
+        width: 380px;
+      }
+
+      .skills .skill-items {
+        gap: 10px;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+
+      .skills .skill-items .item {
+        width: 49%;
+      }
+
+      .about .left img {
+        width: 370px;
+      }
+
+      .skills h3,
+      .about .right h3,
+      .portfolio .header h3,
+      .feedback h3 {
+        font-size: 32px;
+      }
+
+      .about .right p {
+        font-size: 15px;
+      }
+
+      .feedback .customers .item .rating {
+        font-size: 20px;
+      }
+
+      .feedback .customers .item p {
+        font-size: 13px;
+      }
+
+      footer .top ul {
+        gap: 20px;
+      }
+
+    }
+
+    @media screen and (max-width: 992px) {
+
+      nav button {
+        display: none;
+      }
+
+      nav ul {
+        gap: 20px;
+      }
+
+      nav ul li a {
+        font-size: 15px;
+      }
+
+      .main {
+        flex-direction: column;
+      }
+
+      .about {
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .portfolio .portfo-items {
+        gap: 22px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .portfolio .portfo-items .item {
+        width: 48%;
+      }
+
+      .feedback .customers {
+        gap: 14px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .feedback .customers .item {
+        width: 48%;
+      }
+
+      footer .top ul {
+        display: none;
+      }
+
+    }
+
+    @media screen and (max-width: 768px) {
+
+      nav {
+        justify-content: space-between;
+        padding: 0 42px;
+      }
+
+      nav ul {
+        display: none;
+      }
+
+      nav.open .logo {
+        display: none;
+      }
+
+      nav.open ul {
+        display: flex;
+      }
+
+      nav button#menuButton {
+        display: flex;
+      }
+
+      .main {
+        padding: 42px;
+      }
+
+      .skills {
+        padding: 85px 42px 0;
+      }
+
+      .skills .skill-items {
+        gap: 8px;
+      }
+
+      .about {
+        padding: 85px 42px;
+      }
+
+      .portfolio {
+        padding: 60px 42px;
+      }
+
+      .portfolio .portfo-items {
+        gap: 18px;
+      }
+
+      .feedback {
+        padding: 85px 42px;
+      }
+
+      footer {
+        padding: 85px 42px;
+      }
+
+      footer .bottom {
+        flex-direction: column-reverse;
+        gap: 14px;
+      }
+
+    }
+
+    @media screen and (max-width: 576px) {
+
+      nav ul li a {
+        font-size: 13px;
+      }
+
+      nav .logo a {
+        font-size: 18px;
+      }
+
+      .main .left h3 {
+        font-size: 32px;
+      }
+
+      .main .left p {
+        font-size: 16px;
+      }
+
+      .main .left button {
+        width: 100%;
+      }
+
+      .skills .skill-items .item {
+        width: 100%;
+      }
+
+      .portfolio .header button {
+        font-size: 12px;
+        padding: 8px 14px;
+      }
+
+      .portfolio .portfo-items .item {
+        width: 80%;
+      }
+
+      .feedback .customers .item {
+        width: 100%;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="logo">
+      <img src="content/8332adf9-2cbb-4cdc-a661-dd4b0fa6d3c7.png">
+      <a href="/" target="_blank">SkyLox</a>
+    </div>
+  </nav>
+
+  <body>
+
+    <div class="signup-container">
+      <h2>Sign Up for SkyLox</h2>
+      <form id="signup-form">
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" required>
+        </div>
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
+
+    <footer>
+      <div class="top">
+        <div class="logo">
+          <img src="content/8332adf9-2cbb-4cdc-a661-dd4b0fa6d3c7.png">
+          <a href="#">SkyLox</a>
+        </div>
+        <ul>
+        </ul>
+        <div class="social-links">
+          <a href="https://www.patreon.com/internationaldevco"><i class='bx bxl-patreon'></i></a>
+          <a href="https://twitter.com/AeroX_Dev"><i class='bx bxl-twitter'></i></a>
+          <a href="https://www.youtube.com/channel/UCLjozLq48EFVZOQl1Kpr_GQ"><i class='bx bxl-youtube'></i></a>
+          <a href="https://discord.gg/aerox2024"><i class='bx bxl-discord'></i></a>
+        </div>
+      </div>
+      <div class="separator"></div>
+      <div class="bottom">
+        <p>
+          Made by: Wolfis & MrRandom - Copyrighted 2024 by SkyLox Systems, protected under<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank"> CC BY-NC-SA 4.0</a>
+        </p>
+        <div class="links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Cookies Setting</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+
+    </script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyANpCnUjxHov9R12v_aPeU8whGCzmneP8I",
+        authDomain: "skylox-e0bd1.firebaseapp.com",
+        projectId: "skylox-e0bd1",
+        storageBucket: "skylox-e0bd1.appspot.com",
+        messagingSenderId: "646281009157",
+        appId: "1:646281009157:web:442ea6e94fc31ca50da46c",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      document.getElementById('signup-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+          .then((userCredential) => {
+            const user = userCredential.user;
+            return user.sendEmailVerification().then(() => {
+              console.log('Verification email sent.');
+              // Generate a unique ID after email verification is sent
+              const uniqueID = generateSixDigitID();
+              // Store the unique ID in Firestore and return the promise for chaining
+              return storeUniqueID(user.uid, uniqueID);
+            });
+          })
+          .then(() => {
+            // Redirect to email verification page after storing the unique ID
+            window.location.href = '/verify-email.html';
+          })
+          .catch((error) => {
+            alert(error.message);
+          });
+      });
+
+      function generateSixDigitID() {
+        // Generate a random number between 100000 and 999999
+        return Math.floor(100000 + Math.random() * 900000).toString();
+      }
+
+      function storeUniqueID(userID, uniqueID) {
+        // Store the unique ID in Firestore document for the userID
+        return firebase.firestore().collection('users').doc(userID).set({
+          uniqueID: uniqueID
+        });
+      }
+    </script>
+  </body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Offline Detection</title>
+<style>
+    .offline-message {
+        display: none;
+        color: red;
+    }
+</style>
+</head>
+<body>
+
+<h1>Online/Offline Detection</h1>
+<div class="online-message">You are currently online!</div>
+<div class="offline-message">You are currently offline. Some features may not be available.</div>
+
+<script>
+    function updateStatus() {
+        if (navigator.onLine) {
+            document.querySelector('.online-message').style.display = 'block';
+            document.querySelector('.offline-message').style.display = 'none';
+        } else {
+            document.querySelector('.online-message').style.display = 'none';
+            document.querySelector('.offline-message').style.display = 'block';
+        }
+    }
+
+    window.addEventListener('load', updateStatus);
+    window.addEventListener('online', updateStatus);
+    window.addEventListener('offline', updateStatus);
+</script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+          // Registration was successful
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }, function(err) {
+          // registration failed :(
+          console.log('ServiceWorker registration failed: ', err);
+        });
+      });
+    }
+  </script>
+
+
+</body>
+</html>

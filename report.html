@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Report a Problem</title>
+    <style>
+      body {
+          font-family: Arial, sans-serif;
+      }
+
+      .form-container {
+          max-width: 500px;
+          margin: 20px auto;
+          padding: 20px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+      }
+
+      .form-group {
+          margin-bottom: 20px;
+      }
+
+      .form-group label {
+          display: block;
+          margin-bottom: 5px;
+      }
+
+      .form-group input[type="text"],
+      .form-group select,
+      .form-group textarea {
+          width: 100%;
+          padding: 8px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+      }
+
+      .captcha {
+          margin-bottom: 20px;
+      }
+
+    </style>
+</head>
+<body>
+<div class="form-container">
+    <h2>Report a Problem</h2>
+    <form id="problemForm">
+        <div class="form-group">
+            <label for="serviceDropdown">Select Service:</label>
+            <select id="serviceDropdown" name="service" required>
+                <option value="Service 1">Service 1</option>
+                <option value="Service 2">Service 2</option>
+                <option value="Service 3">Service 3</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="problemDescription">Problem Description:</label>
+            <textarea id="problemDescription" name="description" rows="3" required></textarea>
+        </div>
+        <div class="form-group captcha">
+            <label for="captchaInput">What is <span id="num1"></span> + <span id="num2"></span>?</label>
+            <input type="text" id="captchaInput" required>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      const num1 = Math.floor(Math.random() * 10);
+      const num2 = Math.floor(Math.random() * 10);
+
+      document.getElementById("num1").textContent = num1;
+      document.getElementById("num2").textContent = num2;
+
+      document.getElementById("problemForm").onsubmit = function(event) {
+          const userAnswer = parseInt(document.getElementById("captchaInput").value);
+          const correctAnswer = num1 + num2;
+
+          if (userAnswer !== correctAnswer) {
+              alert("Incorrect CAPTCHA answer. Please try again.");
+              event.preventDefault(); // Prevent form submission
+              return false;
+          }
+
+          alert("CAPTCHA correct! Form would be submitted here."); // Placeholder action
+          event.preventDefault(); // Remove this line when integrating with real backend
+      };
+  });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SkyMap | SkyLox live map</title>
+<link rel="icon" type="image/png" href="/8332adf9-2cbb-4cdc-a661-dd4b0fa6d3c7.png">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  body {
+    margin: 0;
+    font-family: 'DMSans', sans-serif;
+    background: #000000;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background-color: #2c3e50;
+  }
+
+  #logo {
+      width: 60px; /* Adjust as necessary */
+  }
+  .header .clock {
+    font-size: 16px;
+    font-weight: 500;
+    color: #ffffff;
+  }
+  #map {
+    width: 100%;
+    height: calc(100vh - 50px);
+  }
+  .footer {
+      background-color: #34495e;
+      color: white;
+      text-align: center;
+      padding: 20px;
+  }
+  .footer img {
+      width: 50px;
+      height: 50px;
+      margin: 0 auto;
+      display: block;
+  }
+
+  .footer a {
+      color: #ffffff;
+  }
+
+  .footer a:hover {
+      color: #f1e5e5;
+  }
+  </style>
+  </head>
+  <body>
+
+  <div class="header">
+    <a href="/">
+      <img src="/content/skymap.png" alt="SkyMap Logo" id="logo">
+      </a>
+  <div class="clock" id="clock"></div>
+  </div>
+
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script>
+    // Initialize the map and set its view to our chosen geographical coordinates and a zoom level:
+    var map = L.map('map').setView([37.0902, -95.7129], 4);
+
+    // Set up the black and white tile layer using CartoDB tiles:
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        maxZoom: 19,
+        attribution: 'Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL. | Not for real world navigation | Made by Edward Quigley (SkyLox)'
+    }).addTo(map);
+
+  // Real-time Zulu Time and Date display
+  function updateClock() {
+    var now = new Date();
+    var hours = now.getUTCHours();
+    var minutes = now.getUTCMinutes();
+    var seconds = now.getUTCSeconds();
+    var year = now.getUTCFullYear();
+    var month = now.getUTCMonth() + 1; // Months are zero-indexed
+    var day = now.getUTCDate();
+
+    // Pad single digit minutes and seconds with a leading zero
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+    month = month < 10 ? '0' + month : month;
+    day = day < 10 ? '0' + day : day;
+
+    // Create a string for the clock
+    var clockStr = hours + ':' + minutes + ':' + seconds + 'Z | ' + month + '/' + day + '/' + year;
+
+    // Set the text of the clock div to the time string
+    document.getElementById('clock').innerText = clockStr;
+  }
+
+  // Call updateClock every second
+  setInterval(updateClock, 1000);
+
+  // Initialize the clock
+  updateClock();
+</script>
+    <div class="footer">
+      <a href="https://copyrightalliance.org/">
+        <img src="/content/CM-Badge-2.png" alt="Copyright Association">
+      </a>
+        <p>©2024 by AeroX 2024. All rights are reserved</p>
+        <p>SkyLox is protected under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1">CC. Learn More.</a></p>
+    </div>
+</body>
+</html>
